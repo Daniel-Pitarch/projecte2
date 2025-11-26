@@ -52,8 +52,13 @@ class PostController extends Controller
     }
     public function destroyMany(Post $post)
     {
-        $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+        $posts = Post::latest()->get();
+        foreach ($posts as $item) {
+            if($item->isDeleted == true){
+                $item->delete();
+            }
+        }
+        return redirect()->route('posts.index')->with('success', 'Permanently deleted all soft deletes');
     }
     public function softDelete(Post $post)
     {

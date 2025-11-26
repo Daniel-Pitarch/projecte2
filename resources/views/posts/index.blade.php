@@ -37,9 +37,9 @@
     </tr>
     
     @endforeach
-    <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline">
+    <form action="{{ route('posts.destroyMany', $post) }}" method="POST" class="d-inline">
         @csrf 
-        @method('DELETE')
+        @method('PUT')
         <button type="submit" class="btn btn-danger btn-sm">Delete ALL</button>
     </form>
 </table>

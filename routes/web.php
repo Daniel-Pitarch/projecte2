@@ -10,3 +10,6 @@ Route::get('/', function () {
 Route::resource('posts', PostController::class);
 Route::put('/posts/{post}/soft-delete', [PostController::class, 'softDelete'])
     ->name('posts.softDelete');
+
+Route::put('/posts/{post}/destroy-many', [PostController::class, 'destroyMany'])
+->name('posts.destroyMany');
