@@ -8,6 +8,23 @@
 </head>
 <body>
     <div class="container mt-5">
+        <nav class="mb-4 d-flex justify-content-end">
+            @auth
+                <span class="me-2">{{ Auth::user()->username ?? Auth::user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button class="btn btn-link p-0">Logout</button>
+                </form>
+            @else
+                <a class="me-2" href="{{ route('login.form') }}">Login</a>
+                <a href="{{ route('register.form') }}">Register</a>
+            @endauth
+        </nav>
+
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
         @yield('content')
     </div>
 </body>
